@@ -67,6 +67,12 @@ const setCarrito = objeto => {
     }
     carrito[producto.id] = {...producto}
     pintarCarrito()
+    //alert("Producto: "+producto.title+ " agregado al carrito!")
+    Swal.fire(
+        'Producto: '+producto.title,
+        'Agregado al carrito!',
+        'success'
+      )
 }
 
 const pintarCarrito = () => {
@@ -110,7 +116,11 @@ const pintarFooter = () => {
     boton.addEventListener('click', () => {
         carrito = {}
         pintarCarrito() 
-
+        Swal.fire({
+            icon: 'error',
+            title: 'CARRITO VACIADO',
+            text: '¡Vuelve a agregar productos al carro!',
+          })
     })
 }
 
@@ -128,7 +138,20 @@ const btnAccion = e => {
         if(producto.cantidad === 0) {
             delete carrito[e.target.dataset.id]
         }
-
     }
     e.stopPropagation()
+    
 }
+//boton de finalizar
+const finalizar = document.querySelector('finalizar')
+finalizar.addEventListener('click', () => {
+    Swal.fire({
+        title: 'Sweet!',
+        text: 'Modal with a custom image.',
+        imageUrl: 'https://unsplash.it/400/200',
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Custom image',
+      });
+})
+   
